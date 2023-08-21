@@ -6,32 +6,24 @@ import java.util.List;
 import java.util.Scanner;
 
 public class weightedsubstrings {
-    static int distinctSubString(String P, String Q,
-            int K, int N) {
-        HashSet<String> S = new HashSet<String>();
-        for (int i = 0; i < N; ++i) {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        int weight = sc.nextInt();
+        int count = 0;
+        for (int i = 0; i < s.length(); i++) {
             int sum = 0;
-            String s = "";
-            for (int j = i; j < N; ++j) {
-                int pos = P.charAt(j) - 'a';
-                sum += Q.charAt(pos) - '0';
-                s += P.charAt(j);
-                if (sum <= K) {
-                    S.add(s);
-                } else {
-                    break;
+            String s1 = "";
+            for (int j = i; j < s.length(); j++) {
+                sum = sum + (s.charAt(j) - 'a') + 1;
+                s1 = s1 + s.charAt(j);
+                if (sum <= weight) {
+                    count++;
+                    System.out.println(s1);
                 }
             }
         }
-        return S.size();
-    }
-
-    public static void main(String[] args) {
-        String P = "abd";
-        String Q = "12345678912345678912345678";
-        int K = 5;
-        int N = P.length();
-
-        System.out.print(distinctSubString(P, Q, K, N));
+        System.out.println(count);
     }
 }
+
