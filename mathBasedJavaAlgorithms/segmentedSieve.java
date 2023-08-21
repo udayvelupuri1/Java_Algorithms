@@ -5,24 +5,21 @@ import java.util.Scanner;
 public class segmentedSieve {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int s = sc.nextInt();
-        int n = sc.nextInt();
-        boolean prime[] = new boolean[n + 1];
-        for (int i = 0; i <= n; i++) {
-            prime[i] = true;
-        }
-        for (int j = 2; j * j <= n; j++) {
-            if (prime[j] = true) {
-                for (int i = j * j; i <= n; i += j) {
-                    prime[i] = false;
-                }
-            }
-        }
-        for (int i = s; i <= n; i++) {
-            if (prime[i] == true) {
+        int n1 = sc.nextInt();
+        int n2 = sc.nextInt();
+        for (int i = n1; i <= n2; i++) {
+            if (isPrime(i) == true)
                 System.out.print(i + " ");
-            }
         }
     }
 
+    public static boolean isPrime(int n) {
+        if (n < 2)
+            return false;
+        for (int i = 2; i < n; i++) {
+            if (n % i == 0)
+                return false;
+        }
+        return true;
+    }
 }
